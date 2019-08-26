@@ -1,0 +1,62 @@
+*,
+*:focus {
+    box-sizing: border-box;
+    margin: 0;
+    outline: none
+}
+a {
+    outline: none;
+    text-decoration: none;
+    color: #2B2A29;
+}
+li {
+    list-style-type: none;
+}
+ul {
+    padding: 0;
+}
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: "Roboto-Regular";
+    font-size: 14px;
+    max-width: 1920px;
+    margin: 0 auto;
+    color: #2B2A29;
+    background-color: #ffffff;
+}
+label {
+    width: 100%;
+}
+.mb-20{
+    margin-bottom: 20px;
+}
+.ml-10{
+    margin-left: 10px;
+}
+.pr-15{
+    padding-right: 15px;
+}
+.inventory-message{
+    color: red;
+}
+.blue-message{
+    color: blue;
+}
+.rating{
+    display: inline-block;
+    margin-left: 12px;
+}
+.rating p {
+    display: inline-block;
+}
+.star{
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+}
+.rating-active{
+    background: gold;
+}

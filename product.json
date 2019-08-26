@@ -1,0 +1,13 @@
+{
+  "products": [
+    {
+      "id": "1001",
+      "title": "Cat Food, 25lb bag",
+      "description": "A 25 pound bag of <em>irresistible</em>, organic goodness for you cat.",
+      "price": "2000",
+      "image": "./img/cat.jpg",
+      "availableElementary": "10",
+      "rating": "4"
+    }
+  ]
+}
