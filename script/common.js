@@ -4,16 +4,6 @@ let webStore = new Vue({
     el: '#app',
     data: {
         siteName: 'Vue.js Pet Depot',
-        product: {
-            id: 1001,
-            title: 'Cat Food, 25lb bag',
-            description: 'A 25 pound bag of <em>irresistible</em>, ' +
-                'organic goodness for you cat.',
-            price: 2000,
-            image: './img/cat.jpg',
-            availableElementary: 10,
-            rating: 4
-        },
         cart: [],
         showProduct: true,
         order: {
@@ -30,6 +20,7 @@ let webStore = new Vue({
             sendGift: 'Send As A Gift',
             dontSendGift: 'Do Not Send As A Gift'
         },
+        products: [],
         states: {
             Minsk: 'Minsk',
             Grodno: 'Grodno',
@@ -39,8 +30,8 @@ let webStore = new Vue({
         }
     },
     methods: {
-        addToCart() {
-            this.cart.push(this.product.id);
+        addToCart(aProduct) {
+            this.cart.push(aProduct.id);
             // console.log(this.cart);
         },
         chowCheckout() {
@@ -49,16 +40,45 @@ let webStore = new Vue({
         submitForm() {
             alert('Submit');
         },
-        checkRating(n) {
-            return  this.product.rating - n >= 0;
+        checkRating(n, myProduct) {
+            return  myProduct.rating - n >= 0;
+        },
+        canAddToCart(aProduct) {
+            return aProduct.availableElementary > this.cartCount(aProduct.id);
+        },
+        cartCount(id) {
+            let count = 0;
+            // this.cart.forEach(item => {
+            //     if(item.id === id) {
+            //         count++
+            //     }
+            // });
+            for (let i = 0; i < this.cart.length; i++) {
+                if (this.cart[i] === id) {
+                    count++
+                }
+            }
+            return count;
         }
     },
     computed: {
         cartItemCount() {
             return this.cart.length || '';
         },
-        canAddToCart() {
-            return this.product.availablEinventory > this.cartItemCount;
+        sortedProducts() {
+            if(this.products.length > 1) {
+                let productsArray = this.products.slice(0);
+                function compare(a, b) {
+                    if(a.title.toLowerCase() < b.title.toLowerCase()) {
+                        return -1;
+                    }
+                    if(a.title.toLowerCase() > b.title.toLowerCase()) {
+                        return 1
+                    }
+                    return 0
+                }
+                return productsArray.sort(compare);
+            }
         }
     },
     filters: {
@@ -86,6 +106,14 @@ let webStore = new Vue({
         }
     },
     created() {
+        axios.get('./product.json')
+            .then((response) => {
+               this.products = response.data.products;
+               console.log(this.products);
+            });
+
+
+
         if (APP_LOG_LIFECYCLE_EVENTS) {
             console.log('created');
         }

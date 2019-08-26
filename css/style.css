@@ -60,3 +60,8 @@ label {
 .rating-active{
     background: gold;
 }
+.cat-block{
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid black;
+}
