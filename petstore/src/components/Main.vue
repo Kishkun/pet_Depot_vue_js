@@ -12,8 +12,9 @@
           <div class="col-md-6 col-md-offset-0 description">
             <router-link
               tag="h1"
-              :to="{ name : 'Id', params: {id: product.id}}"
-            >{{product.title}}</router-link>
+              :to="{ name : 'Id', params: {id: product.id}}">
+              {{product.title}}
+            </router-link>
             <p v-html="product.description"></p>
             <p class="price">
               {{product.price | formatPrice}}
@@ -133,4 +134,7 @@
     }
 </script>
 <style scoped>
+  .description h1 {
+    cursor: pointer;
+  }
 </style>
