@@ -27,17 +27,21 @@
                     class=" btn btn-primary btn-lg"
                     v-else >
               Add to cart</button>
-            <span class="inventory-message"
-                  v-if="product.availableInventory - cartCount(product.id) === 0"
-            >All Out!
-        </span>
-            <span class="inventory-message"
-                  v-else-if="product.availableInventory - cartCount(product.id) < 5">
-        Only {{product.availableInventory - cartCount(product.id)}} left!
-      </span>
-            <span class="inventory-message"
-                  v-else>Buy Now!
-    </span>
+            <transition name="bounce" mode="out-in">
+                <span class="inventory-message"
+                      v-if="product.availableInventory - cartCount(product.id) === 0"
+                      key="0">
+                All Out!
+                </span>
+                <span class="inventory-message"
+                      v-else-if="product.availableInventory - cartCount(product.id) < 5"
+                      key="">
+                Only {{product.availableInventory - cartCount(product.id)}} left!
+                </span>
+                <span class="inventory-message"
+                    v-else key="">Buy Now!
+                </span>
+            </transition>
             <div class="rating">
       <span  v-bind:class="{'rating-active' :checkRating(n, product)}"
              v-for="n in 5" >☆
@@ -136,5 +140,25 @@
 <style scoped>
   .description h1 {
     cursor: pointer;
+  }
+  .bounce-enter-active{
+    animation: shake 4s cubic-bezier(.37, .07, .19, .97) both;
+    backface-visibility: hidden;
+  }
+  @keyframes shake {
+    10%, 90% {
+      color: red;
+      font-size: 26px;
+    }
+    20%, 80% {
+      font-size: 24px;
+    }
+    30%, 50%, 70% {
+      color: red;
+      font-size: 26px;
+    }
+    40%, 60% {
+      font-size: 24px;
+    }
   }
 </style>

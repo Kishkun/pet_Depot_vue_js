@@ -45,7 +45,4 @@
     text-decoration: none;
     color: #000;
   }
-  /*.router-link-exact-active{*/
-  /*  color: blue;*/
-  /*}*/
 </style>
